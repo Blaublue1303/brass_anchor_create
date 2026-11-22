@@ -4,6 +4,8 @@
 
 ![Brass Anchor](https://raw.githubusercontent.com/Blaublue1303/brass_anchor_create/main/curseforge/logo.png)
 
+![Model](https://raw.githubusercontent.com/Blaublue1303/brass_anchor_create/main/curseforge/model-preview.png)
+
 ## Features
 
 - **One block, fully ticking chunks.** Loaded chunks stay in the simulation: Create machines, furnaces, crops (random ticks) and **animals and other entities keep ticking**, even with no player nearby.

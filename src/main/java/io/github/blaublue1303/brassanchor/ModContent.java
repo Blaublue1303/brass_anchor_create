@@ -28,6 +28,7 @@ public final class ModContent {
                     .strength(5.0F, 1200.0F)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.NETHERITE_BLOCK)
+                    .noOcclusion()
                     .lightLevel(state -> state.getValue(BrassAnchorBlock.ACTIVE) ? 7 : 0)));
 
     public static final DeferredItem<BlockItem> BRASS_ANCHOR_ITEM = ITEMS.register("brass_anchor",
