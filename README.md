@@ -1,6 +1,6 @@
 # Create: Brass Anchor
 
-> **KI-Hinweis:** Diese Mod wurde mit Hilfe von KI (Claude von Anthropic) erstellt. Code, Texturen, 3D-Modell, Logo und Texte sind KI-unterstützt entstanden und vom Autor (Blaublue1303) geprüft.
+> **KI-Hinweis:** Diese Mod wurde mit Hilfe von KI (Claude von Anthropic) erstellt. Code, Texturen, 3D-Modell, Logo und Texte sind KI-unterstützt entstanden.
 
 Ein sparsamer Chunk-Loader für **Minecraft 1.21.1, NeoForge, Create 6.0.10**, mit optionaler Unterstützung für **Sable** (Physik-Schiffe, z. B. Create: Aeronautics).
 

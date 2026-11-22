@@ -1,6 +1,6 @@
 # Create: Brass Anchor
 
-> **AI disclosure:** This mod was created with the help of AI (Claude by Anthropic). The code, textures, 3D model, logo and this description were generated with AI assistance and reviewed by the author (Blaublue1303).
+> **AI disclosure:** This mod was created with the help of AI (Claude by Anthropic). The code, textures, 3D model, logo and this description were generated with AI assistance.
 
 **A lightweight chunk loader for Create that keeps your factories, farms and animals running, even on moving trains and Sable ships.**
 
