@@ -1,0 +1,13 @@
+{
+  "block.brassanchor.brass_anchor": "Messing-Anker",
+  "brassanchor.tooltip.1": "Hält Chunks geladen, inklusive Maschinen, Pflanzen und Tieren.",
+  "brassanchor.tooltip.2": "Rechtsklick: Radius · Schleichen: Status · Redstone: aus. Fährt auf Zügen und Schiffen mit.",
+  "brassanchor.message.radius": "Ladebereich: %1$s×%1$s Chunks (Radius %2$s)",
+  "brassanchor.status.on": "Aktiv: %1$s×%1$s Chunks (%2$s) werden geladen",
+  "brassanchor.status.off": "Aus (Redstone-Signal)",
+  "brassanchor.status.limited": "Inaktiv: Anker-Limit dieser Dimension erreicht",
+  "brassanchor.goggles.title": "Messing-Anker:",
+  "brassanchor.goggles.ticking": "Tiere, Pflanzen und Maschinen laufen weiter",
+  "brassanchor.command.level": "%1$s: %2$s Anker, %3$s bewegt, %4$s auf Schiffen, %5$s Chunks geladen",
+  "brassanchor.command.none": "Keine aktiven Messing-Anker."
+}
