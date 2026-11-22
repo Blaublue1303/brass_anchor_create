@@ -13,6 +13,7 @@ Auf https://authors.curseforge.com → **Create Project** → Minecraft → Mods
 | Main Category | Utility & QoL → **Server Utility** (alternativ „Technology“) |
 | Weitere Kategorien | Create (Addons), Technology, Storage/Automation nach Wunsch |
 | License | MIT |
+| KI-Hinweis | Der Hinweis steht schon oben in `description.md`. Falls CurseForge beim Anlegen fragt, ob KI genutzt wurde: **Ja** angeben. |
 | Source URL | `https://github.com/Blaublue1303/brass_anchor_create` |
 | Issues URL | `https://github.com/Blaublue1303/brass_anchor_create/issues` |
 

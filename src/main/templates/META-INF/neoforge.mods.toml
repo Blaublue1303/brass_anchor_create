@@ -10,6 +10,7 @@ displayName="${mod_name}"
 logoFile="logo.png"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/brass-anchor"
 authors="${mod_authors}"
+credits="Erstellt mit KI-Unterstuetzung (Claude von Anthropic) / Made with AI assistance (Claude by Anthropic)"
 description='''${mod_description}'''
 
 [[dependencies.${mod_id}]]

@@ -1,5 +1,7 @@
 # Create: Brass Anchor
 
+> **AI disclosure:** This mod was created with the help of AI (Claude by Anthropic). The code, textures, 3D model, logo and this description were generated with AI assistance and reviewed by the author (Blaublue1303).
+
 **A lightweight chunk loader for Create that keeps your factories, farms and animals running, even on moving trains and Sable ships.**
 
 ![Brass Anchor](https://raw.githubusercontent.com/Blaublue1303/brass_anchor_create/main/curseforge/logo.png)
@@ -44,3 +46,4 @@ Install on both client and server.
 
 - Source code and issues: https://github.com/Blaublue1303/brass_anchor_create
 - License: MIT
+- Made with AI assistance (Claude by Anthropic): code, textures, 3D model and logo.
