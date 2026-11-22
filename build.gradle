@@ -1,0 +1,152 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.141'
+    id 'me.modmuss50.mod-publish-plugin' version '0.8.4'
+}
+
+version = mod_version
+group = mod_group_id
+
+base {
+    archivesName = "brass-anchor-neoforge-${minecraft_version}"
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+    mavenLocal()
+    // Ponder, Flywheel
+    maven { url = 'https://maven.createmod.net' }
+    // Registrate
+    maven { url = 'https://maven.ithundxr.dev/snapshots' }
+    // Forge Config API Port (von Ponder benoetigt)
+    maven { url = 'https://raw.githubusercontent.com/Fuzss/modresources/main/maven' }
+    // Sable (optional)
+    exclusiveContent {
+        forRepository {
+            maven { name = 'RyanHCode Maven'; url = 'https://maven.ryanhcode.dev/releases' }
+        }
+        filter {
+            includeGroup 'dev.ryanhcode.sable'
+            includeGroup 'dev.ryanhcode.sable-companion'
+        }
+    }
+    // Create selbst
+    exclusiveContent {
+        forRepository {
+            maven { name = 'Modrinth'; url = 'https://api.modrinth.com/maven' }
+        }
+        filter { includeGroup 'maven.modrinth' }
+    }
+}
+
+neoForge {
+    version = project.neo_version
+
+    parchment {
+        mappingsVersion = project.parchment_mappings_version
+        minecraftVersion = project.parchment_minecraft_version
+    }
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet(sourceSets.main)
+        }
+    }
+}
+
+dependencies {
+    // Create bringt Ponder, Flywheel und Registrate per jarJar mit.
+    // Fuer die Laufzeit reicht also das Create-Jar, zum Kompilieren brauchen wir die APIs.
+    implementation "maven.modrinth:create:${create_modrinth_version}"
+
+    compileOnly "net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}"
+    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}"
+    compileOnly "com.tterrag.registrate:Registrate:${registrate_version}"
+
+    // Sable ist optional: nur gegen die API kompilieren, zur Laufzeit wird alles
+    // Sable-spezifische ueber SableCompat nur geladen, wenn Sable installiert ist.
+    compileOnly("dev.ryanhcode.sable:sable-common-${minecraft_version}:${sable_version}") { transitive = false }
+    compileOnly("dev.ryanhcode.sable-companion:sable-companion-common-${minecraft_version}:${sable_companion_version}") { transitive = false }
+}
+
+var generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            create_version_range   : create_version_range,
+            sable_version_range    : sable_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
+    ]
+    inputs.properties replaceProperties
+    expand replaceProperties
+    from 'src/main/templates'
+    into 'build/generated/sources/modMetadata'
+}
+sourceSets.main.resources.srcDir generateModMetadata
+neoForge.ideSyncTask generateModMetadata
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+// ------------------------------------------------------------------ Veroeffentlichen
+// Lokal: ./gradlew publishMods (ohne CURSEFORGE_TOKEN laeuft nur ein Probelauf).
+// Automatisch: GitHub Actions bei einem Tag "v*" (siehe .github/workflows/release.yml).
+publishMods {
+    file = jar.archiveFile
+    displayName = "${mod_name} ${project.version}"
+    version = project.version.toString()
+    changelog = providers.provider {
+        // Nur den Abschnitt der aktuellen Version aus CHANGELOG.md nehmen
+        def text = file('CHANGELOG.md').text
+        def m = text =~ /(?s)## \[?${java.util.regex.Pattern.quote(project.version.toString())}\]?[^\n]*\n(.*?)(?=\n## |\z)/
+        m.find() ? m.group(1).trim() : "Siehe CHANGELOG.md"
+    }
+    type = project.version.toString().startsWith('0.') ? BETA : STABLE
+    modLoaders.add('neoforge')
+    dryRun = providers.environmentVariable('CURSEFORGE_TOKEN').getOrNull() == null
+
+    curseforge {
+        projectId = providers.gradleProperty('curseforge_project_id')
+        accessToken = providers.environmentVariable('CURSEFORGE_TOKEN')
+        minecraftVersions.add(minecraft_version)
+        javaVersions.add(JavaVersion.VERSION_21)
+        clientRequired = true
+        serverRequired = true
+        requires('create')
+        optional('sable')
+    }
+}

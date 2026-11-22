@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "lit=true": { "model": "brassanchor:block/brass_anchor" },
+    "lit=false": { "model": "brassanchor:block/brass_anchor_off" }
+  }
+}

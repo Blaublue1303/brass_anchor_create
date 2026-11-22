@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "BEB",
+    "OCO",
+    "BPB"
+  ],
+  "key": {
+    "B": { "item": "create:brass_ingot" },
+    "E": { "item": "minecraft:ender_eye" },
+    "O": { "item": "minecraft:obsidian" },
+    "C": { "item": "create:brass_casing" },
+    "P": { "item": "create:precision_mechanism" }
+  },
+  "result": {
+    "id": "brassanchor:brass_anchor",
+    "count": 1
+  }
+}

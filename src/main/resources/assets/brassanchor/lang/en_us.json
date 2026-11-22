@@ -1,0 +1,13 @@
+{
+  "block.brassanchor.brass_anchor": "Brass Anchor",
+  "brassanchor.tooltip.1": "Keeps chunks loaded, including machines, crops and animals.",
+  "brassanchor.tooltip.2": "Right-click: radius · Sneak: status · Redstone: off. Rides along on trains and ships.",
+  "brassanchor.message.radius": "Loading area: %1$s×%1$s chunks (radius %2$s)",
+  "brassanchor.status.on": "Active: loading %1$s×%1$s chunks (%2$s)",
+  "brassanchor.status.off": "Off (redstone signal)",
+  "brassanchor.status.limited": "Inactive: anchor limit for this dimension reached",
+  "brassanchor.goggles.title": "Brass Anchor:",
+  "brassanchor.goggles.ticking": "Animals, crops and machines keep running",
+  "brassanchor.command.level": "%1$s: %2$s anchors, %3$s moving, %4$s on ships, %5$s chunks loaded",
+  "brassanchor.command.none": "No active chunk anchors."
+}
